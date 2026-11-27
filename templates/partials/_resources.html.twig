@@ -1,0 +1,10 @@
+<aside class="resources">
+  <h3>Course Resources</h3>
+  <ul>
+    {% for res in resources %}
+      <li><a href="{{ res.url }}">{{ res.title }}</a></li>
+    {% else %}
+      <li>No resources available.</li>
+    {% endfor %}
+  </ul>
+</aside>

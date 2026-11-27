@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<h1>Search Events</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+<button type="submit">Search</button>
+{{ form_end(form) }}
+
+<hr>
+
+{% if events is not empty %}
+    <h2>Results:</h2>
+    <ul>
+        {% for event in events %}
+            <li>{{ event.name }}</li>
+            <li>{{ event.place }}</li>
+            <li>{{ event.startDate | date }}</li>
+            <li>{{ event.endDate | date }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No events found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<h1>List of students :</h1>
+<table border="2">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name | upper }}</td>
+            <td>{{ s.age }}</td>
+        </tr>
+    {% else %}
+        <tr><td colspan="3"><strong>This list is empty</strong></td></tr>
+    {% endfor %}
+</table>
+
+<h1>List of courses :</h1>
+<table border="2">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Students</th>
+    </tr>
+    {% for c in courses %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.title }}</td>
+            <td>
+                <ul>
+                    {% for s in c.students %}
+                        <li>{{ s.name }} ({{ s.age }} years)</li>
+                    {% else %}
+                        <li>No students</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="3"><strong>This list is empty</strong></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

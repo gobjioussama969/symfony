@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<h1>List of events</h1>
+<p>
+    <a href="{{ path('app_event_new') }}">Add Event</a> |
+    <a href="{{ path('event_search') }}">Search by name</a> |
+    <a href="{{ path('event_search_category') }}">Search by category</a>
+</p>
+<table border="2">
+    <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Place</th>
+        <th>Category</th>
+        <th>Action</th>
+    </tr>
+    {% for e in events %}
+        <tr>
+            <td>{{ e.name }}</td>
+            <td>{{ e.startDate | date }}</td>
+            <td>{{ e.endDate | date }}</td>
+            <td>{{ e.place }}</td>
+            <td>{{ e.category ? e.category.name : '-' }}</td>
+            <td><a href="{{ path('app_event_delete', {'id': e.id}) }}">Delete</a>
+                <a href="{{ path('app_event_update', {'id': e.id}) }}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

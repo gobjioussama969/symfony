@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My University{% endblock %}</title>
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  {% block stylesheets %}{% endblock %}
+</head>
+<body>
+  {% include 'partials/_navbar.html.twig' %}
+
+  <main class="container">
+    {% block content %}{% block body %}{% endblock %}{% endblock %}
+  </main>
+
+  {% include 'partials/_footer.html.twig' %}
+  {% block javascripts %}{% endblock %}
+</body>
+</html>

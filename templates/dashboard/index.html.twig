@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h1>Admin Dashboard</h1>
+  <p>Welcome {{ app.user.username }}</p>
+  <table border="2">
+    <tr><th>Events</th><td>{{ nbEvents }}</td></tr>
+    <tr><th>Categories</th><td>{{ nbCategories }}</td></tr>
+    <tr><th>Users</th><td>{{ nbUsers }}</td></tr>
+    <tr><th>Registrations</th><td>{{ nbRegistrations }}</td></tr>
+  </table>
+  <p>
+    <a href="{{ path('app_event') }}">Events</a> |
+    <a href="{{ path('app_category_index') }}">Categories</a> |
+    <a href="{{ path('app_registration_crud_index') }}">Registrations</a>
+  </p>
+{% endblock %}

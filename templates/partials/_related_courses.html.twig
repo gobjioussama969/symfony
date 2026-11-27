@@ -1,0 +1,7 @@
+<ul class="related-courses">
+  {% for course in related_courses %}
+    <li>{{ course.code }} - {{ course.title }}</li>
+  {% else %}
+    <li>No related courses found.</li>
+  {% endfor %}
+</ul>

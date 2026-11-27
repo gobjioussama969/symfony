@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+    <h1>Registration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ registration.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ registration.date ? registration.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ registration.state }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_registration_crud_index') }}">back to list</a>
+
+    <a href="{{ path('app_registration_crud_edit', {'id': registration.id}) }}">edit</a>
+
+    {{ include('registration_crud/_delete_form.html.twig') }}
+{% endblock %}

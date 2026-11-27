@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ course.title }} | My University{% endblock %}
+
+{% block content %}
+  <section class="course-info">
+    <h1>{{ course.title }}</h1>
+    <p><strong>Instructor:</strong> {{ course.instructor.name }}</p>
+    <p><strong>Semester:</strong> {{ course.semester }}</p>
+  </section>
+
+  <section class="sessions">
+    <h2>Sessions</h2>
+    <ul>
+      {% for s in course.sessions %}
+        <li>{{ s.date|date('Y-m-d') }} — {{ s.topic }}</li>
+      {% else %}
+        <li>No sessions scheduled.</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+
+  {% include 'partials/_resources.html.twig' with {'resources': course.resources} %}
+
+  <hr>
+
+
+  <section class="related">
+
+    {{ render(controller(
+      'App\\Controller\\CourseController::relatedCourses',
+      {'id': course.id}
+    )) }}
+  </section>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <a href="{{ path('homepage') }}">Home</a>
+  <a href="{{ path('course_list') }}">Courses</a>
+  <a href="{{ path('contact') }}">Contact</a>
+  <a href="{{ path('app_event') }}">Events</a>
+  {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('dashboard') }}">Dashboard</a>{% endif %}
+    <a href="{{ path('app_logout') }}">Logout ({{ app.user.email }})</a>
+  {% else %}
+    <a href="{{ path('app_login') }}">Login</a>
+    <a href="{{ path('app_register') }}">Register</a>
+  {% endif %}
+</nav>

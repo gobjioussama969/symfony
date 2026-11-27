@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | My University{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <span class="hero-badge">TEK-UP · Symfony 6.4</span>
+    <h1>Event Management</h1>
+    <p>Discover, create and manage the events of the university : conferences, workshops, sport, music...</p>
+    <div class="hero-actions">
+      <a href="{{ path('app_event') }}" class="hero-btn">See all events</a>
+      {% if app.user %}
+        <a href="{{ path('app_event_new') }}" class="hero-btn hero-btn-light">+ Add an event</a>
+      {% else %}
+        <a href="{{ path('app_register') }}" class="hero-btn hero-btn-light">Create an account</a>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span class="stat-number">{{ nbEvents }}</span><span class="stat-label">Events</span></div>
+    <div class="stat"><span class="stat-number">{{ nbCategories }}</span><span class="stat-label">Categories</span></div>
+    <div class="stat"><span class="stat-number">{{ nbRegistrations }}</span><span class="stat-label">Registrations</span></div>
+    <div class="stat"><span class="stat-number">{{ nbUsers }}</span><span class="stat-label">Users</span></div>
+  </section>
+
+  <h2>events</h2>
+  <div class="cards">
+    {% for e in events %}
+      <div class="card event-card">
+        <span class="card-tag">{{ e.category ? e.category.name : 'No category' }}</span>
+        <h3>{{ e.name }}</h3>
+        <p>📍 {{ e.place }}</p>
+        <p>📅 {{ e.startDate | date('d/m/Y') }} → {{ e.endDate | date('d/m/Y') }}</p>
+        <a href="{{ path('app_event_update', {'id': e.id}) }}" class="card-link">Details →</a>
+      </div>
+    {% else %}
+      <div class="card empty-card">
+        <h3>No events yet</h3>
+        <a href="{{ path('app_event_new') }}" class="card-link">Add an event →</a>
+      </div>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}
